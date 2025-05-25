@@ -1,13 +1,26 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import Pet from './Pet.vue'
+
+const jogando = ref(false)
+
+function iniciarJogo() {
+  jogando.value = true
+}
+</script>
 
 <template>
   <div>
-    <div class="menu-fundo">
+    <div v-if="!jogando" class="menu-fundo">
       <h1 class="menu-title">PET YOUR MORENO</h1>
       <div>
-        <button class="menu-botao">JOGAR</button>
+        <button class="menu-botao" @click="iniciarJogo">JOGAR</button>
         <button class="menu-botao">OPÇÕES</button>
       </div>
+    </div>
+
+    <div v-else>
+      <Pet @voltarMenu="jogando = false" />
     </div>
   </div>
 </template>

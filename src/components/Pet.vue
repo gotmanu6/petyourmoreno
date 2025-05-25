@@ -7,6 +7,12 @@ let fome = ref(100);
 let diversao = ref(100);
 let higiene = ref(100);
 
+const emit = defineEmits(['voltarMenu'])
+
+function voltarParaMenu() {
+  emit('voltarMenu')
+}
+
 function menosStatus(status1, status2, status3, status4) {
   status1.value -= 1;
   status2.value -= 1;
@@ -21,6 +27,9 @@ onMounted(() => {
 
 <template>
   <div class="pet-fundo">
+    <!-- Botão de engrenagem -->
+    <button class="voltar-botao" @click="voltarParaMenu" aria-label="Voltar ao menu">⚙️</button>
+
     <div class="pet-title">Pet Your Moreno</div>
 
     <div class="pet-status">
@@ -56,5 +65,21 @@ onMounted(() => {
   align-items: flex-end;
   height: 90vh;
   gap: 20px;
+}
+
+.voltar-botao {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.voltar-botao:hover {
+  transform: rotate(20deg) scale(1.1);
 }
 </style>
